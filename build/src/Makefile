@@ -144,6 +144,33 @@ ICPC-Management-System_lib/fast:
 	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/build
 .PHONY : ICPC-Management-System_lib/fast
 
+input.o: input.cc.o
+.PHONY : input.o
+
+# target to build an object file
+input.cc.o:
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_run.dir/build.make src/CMakeFiles/ICPC-Management-System_run.dir/input.cc.o
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/input.cc.o
+.PHONY : input.cc.o
+
+input.i: input.cc.i
+.PHONY : input.i
+
+# target to preprocess a source file
+input.cc.i:
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_run.dir/build.make src/CMakeFiles/ICPC-Management-System_run.dir/input.cc.i
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/input.cc.i
+.PHONY : input.cc.i
+
+input.s: input.cc.s
+.PHONY : input.s
+
+# target to generate assembly for a file
+input.cc.s:
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_run.dir/build.make src/CMakeFiles/ICPC-Management-System_run.dir/input.cc.s
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/input.cc.s
+.PHONY : input.cc.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -208,6 +235,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... ICPC-Management-System_lib"
 	@echo "... ICPC-Management-System_run"
+	@echo "... input.o"
+	@echo "... input.i"
+	@echo "... input.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

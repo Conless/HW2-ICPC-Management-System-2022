@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "../../out/bin/ICPC-Management-System_run"
   "../../out/bin/ICPC-Management-System_run.pdb"
+  "CMakeFiles/ICPC-Management-System_run.dir/input.cc.o"
+  "CMakeFiles/ICPC-Management-System_run.dir/input.cc.o.d"
   "CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o"
   "CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o.d"
   "CMakeFiles/ICPC-Management-System_run.dir/team.cc.o"

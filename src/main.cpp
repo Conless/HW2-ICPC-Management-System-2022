@@ -1,9 +1,13 @@
 #include <stdio.h>
+#include <iostream>
 #include "../include/team.h"
+#include "../include/input.h"
+
 
 int main() {
-    ios::sync_with_stdio(false);
+    std::ios::sync_with_stdio(false);
     printf("Hello, World!\n");
-    TeamInfo a;
+    InputMessage a;
+    a.Read();
     return 0;
 }

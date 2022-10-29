@@ -7,8 +7,6 @@
 class InputMessage {
   public:
     int opt;
-    
-    std::string option;
     std::string *data;
 
   public:

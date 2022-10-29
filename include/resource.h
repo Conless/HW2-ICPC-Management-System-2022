@@ -1,4 +1,12 @@
-
+// Options Sign
+const int kAdd = 1;
+const int kStart = 2;
+const int kSub = 3;
+const int kFlush = 4;
+const int kFreeze = 5;
+const int kScroll = 6;
+const int kQrank = 7;
+const int kQsub = 8;
 
 // The messages used when adding teams
 const char kAddTeamSuc[] = "[Info]Add successfully.";

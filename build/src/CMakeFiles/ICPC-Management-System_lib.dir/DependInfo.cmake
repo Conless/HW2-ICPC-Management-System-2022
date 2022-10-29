@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/input.cc" "src/CMakeFiles/ICPC-Management-System_lib.dir/input.cc.o" "gcc" "src/CMakeFiles/ICPC-Management-System_lib.dir/input.cc.o.d"
   "/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/main.cpp" "src/CMakeFiles/ICPC-Management-System_lib.dir/main.cpp.o" "gcc" "src/CMakeFiles/ICPC-Management-System_lib.dir/main.cpp.o.d"
   "/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/team.cc" "src/CMakeFiles/ICPC-Management-System_lib.dir/team.cc.o" "gcc" "src/CMakeFiles/ICPC-Management-System_lib.dir/team.cc.o.d"
   )

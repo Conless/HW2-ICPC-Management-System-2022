@@ -1,16 +1,13 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-#include <iostream>
 #include <string>
 
-class InputMessage {
-  public:
+struct InputMessage {
     int opt;
     std::string *data;
-
-  public:
-    void Read();
 };
+
+void ReadMsg(InputMessage &msg);
 
 #endif

@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/ICPC-Management-System_run.dir/input.cc.o CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o CMakeFiles/ICPC-Management-System_run.dir/team.cc.o -o ../../out/bin/ICPC-Management-System_run  -lpthread 
+/usr/bin/c++ -g CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o -o ../../out/bin/ICPC-Management-System_run  -lpthread 

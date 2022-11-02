@@ -1,6 +1,10 @@
 file(REMOVE_RECURSE
   "../../out/lib/libICPC-Management-System_lib.a"
   "../../out/lib/libICPC-Management-System_lib.pdb"
+  "CMakeFiles/ICPC-Management-System_lib.dir/ICPC.cc.o"
+  "CMakeFiles/ICPC-Management-System_lib.dir/ICPC.cc.o.d"
+  "CMakeFiles/ICPC-Management-System_lib.dir/data.cc.o"
+  "CMakeFiles/ICPC-Management-System_lib.dir/data.cc.o.d"
   "CMakeFiles/ICPC-Management-System_lib.dir/main.cpp.o"
   "CMakeFiles/ICPC-Management-System_lib.dir/main.cpp.o.d"
 )

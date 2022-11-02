@@ -69,10 +69,38 @@ include src/CMakeFiles/ICPC-Management-System_run.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/CMakeFiles/ICPC-Management-System_run.dir/flags.make
 
+src/CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.o: src/CMakeFiles/ICPC-Management-System_run.dir/flags.make
+src/CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.o: ../src/ICPC.cc
+src/CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.o: src/CMakeFiles/ICPC-Management-System_run.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.o"
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.o -MF CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.o.d -o CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.o -c /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/ICPC.cc
+
+src/CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.i"
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/ICPC.cc > CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.i
+
+src/CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.s"
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/ICPC.cc -o CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.s
+
+src/CMakeFiles/ICPC-Management-System_run.dir/data.cc.o: src/CMakeFiles/ICPC-Management-System_run.dir/flags.make
+src/CMakeFiles/ICPC-Management-System_run.dir/data.cc.o: ../src/data.cc
+src/CMakeFiles/ICPC-Management-System_run.dir/data.cc.o: src/CMakeFiles/ICPC-Management-System_run.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/ICPC-Management-System_run.dir/data.cc.o"
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ICPC-Management-System_run.dir/data.cc.o -MF CMakeFiles/ICPC-Management-System_run.dir/data.cc.o.d -o CMakeFiles/ICPC-Management-System_run.dir/data.cc.o -c /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/data.cc
+
+src/CMakeFiles/ICPC-Management-System_run.dir/data.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ICPC-Management-System_run.dir/data.cc.i"
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/data.cc > CMakeFiles/ICPC-Management-System_run.dir/data.cc.i
+
+src/CMakeFiles/ICPC-Management-System_run.dir/data.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ICPC-Management-System_run.dir/data.cc.s"
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/data.cc -o CMakeFiles/ICPC-Management-System_run.dir/data.cc.s
+
 src/CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o: src/CMakeFiles/ICPC-Management-System_run.dir/flags.make
 src/CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o: ../src/main.cpp
 src/CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o: src/CMakeFiles/ICPC-Management-System_run.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object src/CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o"
 	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/src && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o -MF CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o.d -o CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o -c /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/main.cpp
 
 src/CMakeFiles/ICPC-Management-System_run.dir/main.cpp.i: cmake_force
@@ -85,15 +113,19 @@ src/CMakeFiles/ICPC-Management-System_run.dir/main.cpp.s: cmake_force
 
 # Object files for target ICPC-Management-System_run
 ICPC__Management__System_run_OBJECTS = \
+"CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.o" \
+"CMakeFiles/ICPC-Management-System_run.dir/data.cc.o" \
 "CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o"
 
 # External object files for target ICPC-Management-System_run
 ICPC__Management__System_run_EXTERNAL_OBJECTS =
 
+../out/bin/ICPC-Management-System_run: src/CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.o
+../out/bin/ICPC-Management-System_run: src/CMakeFiles/ICPC-Management-System_run.dir/data.cc.o
 ../out/bin/ICPC-Management-System_run: src/CMakeFiles/ICPC-Management-System_run.dir/main.cpp.o
 ../out/bin/ICPC-Management-System_run: src/CMakeFiles/ICPC-Management-System_run.dir/build.make
 ../out/bin/ICPC-Management-System_run: src/CMakeFiles/ICPC-Management-System_run.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ../../out/bin/ICPC-Management-System_run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ../../out/bin/ICPC-Management-System_run"
 	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ICPC-Management-System_run.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -144,6 +144,60 @@ ICPC-Management-System_lib/fast:
 	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/build
 .PHONY : ICPC-Management-System_lib/fast
 
+ICPC.o: ICPC.cc.o
+.PHONY : ICPC.o
+
+# target to build an object file
+ICPC.cc.o:
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_run.dir/build.make src/CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.o
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/ICPC.cc.o
+.PHONY : ICPC.cc.o
+
+ICPC.i: ICPC.cc.i
+.PHONY : ICPC.i
+
+# target to preprocess a source file
+ICPC.cc.i:
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_run.dir/build.make src/CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.i
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/ICPC.cc.i
+.PHONY : ICPC.cc.i
+
+ICPC.s: ICPC.cc.s
+.PHONY : ICPC.s
+
+# target to generate assembly for a file
+ICPC.cc.s:
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_run.dir/build.make src/CMakeFiles/ICPC-Management-System_run.dir/ICPC.cc.s
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/ICPC.cc.s
+.PHONY : ICPC.cc.s
+
+data.o: data.cc.o
+.PHONY : data.o
+
+# target to build an object file
+data.cc.o:
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_run.dir/build.make src/CMakeFiles/ICPC-Management-System_run.dir/data.cc.o
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/data.cc.o
+.PHONY : data.cc.o
+
+data.i: data.cc.i
+.PHONY : data.i
+
+# target to preprocess a source file
+data.cc.i:
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_run.dir/build.make src/CMakeFiles/ICPC-Management-System_run.dir/data.cc.i
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/data.cc.i
+.PHONY : data.cc.i
+
+data.s: data.cc.s
+.PHONY : data.s
+
+# target to generate assembly for a file
+data.cc.s:
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_run.dir/build.make src/CMakeFiles/ICPC-Management-System_run.dir/data.cc.s
+	cd /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/data.cc.s
+.PHONY : data.cc.s
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -181,6 +235,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... ICPC-Management-System_lib"
 	@echo "... ICPC-Management-System_run"
+	@echo "... ICPC.o"
+	@echo "... ICPC.i"
+	@echo "... ICPC.s"
+	@echo "... data.o"
+	@echo "... data.i"
+	@echo "... data.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

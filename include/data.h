@@ -1,35 +1,47 @@
-#include <functional>
-#include <set>
 #include <string>
-#include <unordered_map>
 #include <vector>
+
+const int MAXM = 26;
 
 class Submission {
   public:
-    int teamkey, prokey, status, tim;
+    int tid, pid, status, tim, submitid;
 
   public:
     Submission() {}
-    Submission(const Submission &x) : teamkey(x.teamkey), prokey(x.prokey), status(x.status), tim(x.tim) {}
-    Submission(int teamkey, int prokey, int status, int tim) : teamkey(teamkey), prokey(prokey), status(status), tim(tim) {}
-    bool operator<(const Submission x) const { return tim < x.tim; }
+    Submission(const Submission &x) : tid(x.tid), pid(x.pid), status(x.status), tim(x.tim), submitid(x.submitid) {}
+    Submission(int tid, int pid, int status, int tim, int submitid)
+        : tid(tid), pid(pid), status(status), tim(tim), submitid(submitid) {}
+    bool operator<(const Submission x) const;
 };
 
-class Team {
-    std::string team_name;
-    int key;
 
-    int accepted_cnt, time_used;
-    std::set<Submission, std::greater<Submission>> sub[4];
-    
+class SubmitData {
   public:
-    Team(const std::string, const int key);
-    bool operator<(const Team x) const;
-    void submit(Submission x);
-    void flush();
+    int ac_cnt, submit_tot;
+    int submit_cnt[MAXM], submit_cnt_bfac[MAXM];
+    int ac_tim[MAXM];
+    Submission las_sub[MAXM][4];
+
+  public:
+    SubmitData();
+    SubmitData(const SubmitData &x);
+    void clear();
 };
 
-bool AddTeamList(const std::string team_name);
-void FlushAllTeam();
-void SubmitProblem(const std::string problem_name, const std::string team_name, const int submit_status, const int tim);
+class TeamData {
+  public:
+    std::string team_name;
+    int tid, penalty;
+    SubmitData sub, subf;
+    std::vector<int> ac_tim_sort;
 
+
+  public:
+    TeamData() {}
+    TeamData(std::string team_name, int tid) : team_name(team_name), tid(tid) {}
+    inline bool aced_problem(int pid) { return sub.ac_tim[pid] || subf.ac_tim[pid]; }
+    void submit(const Submission x);
+    void submitf(const Submission x);
+    // Submission qsub(const int pid, const int status) { return std::max(sub.las_sub[pid][status], subf.las_sub[pid][status]); }
+};

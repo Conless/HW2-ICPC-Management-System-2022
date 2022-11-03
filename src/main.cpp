@@ -1,13 +1,12 @@
+// The main header file
 #include "../include/ICPC.h"
 
 int main() {
-    freopen("data/1.in", "r", stdin);
-    freopen("test.out", "w", stdout);
-    std::ios::sync_with_stdio(false);
+    std::ios::sync_with_stdio(false);           // stop the sync with stdio
     while (true) {
         InputMessage msg;
-        ReadMsg(msg);
-        if (!OperateMsg(msg))
+        ReadMsg(msg);                                 // Read a message and judge its type 
+        if (!OperateMsg(msg))                         // Operate the message it reads
             break;
     }
     return 0;

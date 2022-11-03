@@ -15,7 +15,6 @@ class Submission {
     bool operator<(const Submission x) const;
 };
 
-
 class SubmitData {
   public:
     int ac_cnt, submit_tot;
@@ -36,12 +35,10 @@ class TeamData {
     SubmitData sub, subf;
     std::vector<int> ac_tim_sort;
 
-
   public:
     TeamData() {}
     TeamData(std::string team_name, int tid) : team_name(team_name), tid(tid) {}
     inline bool aced_problem(int pid) { return sub.ac_tim[pid] || subf.ac_tim[pid]; }
     void submit(const Submission x);
     void submitf(const Submission x);
-    // Submission qsub(const int pid, const int status) { return std::max(sub.las_sub[pid][status], subf.las_sub[pid][status]); }
 };

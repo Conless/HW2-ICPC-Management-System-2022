@@ -1,21 +1,22 @@
 #include "../include/ICPC.h"
 
+#include <ctime>
+#include <iostream>
+#include <set>
+#include <unordered_map>
+
 #include "../include/data.h"
 #include "../include/resource.h"
 
-#include <iostream>
-#include <unordered_map>
-#include <set>
 
 int started_flag = 0, freeze_flag = 0;
 int team_cnt = 0, problem_cnt = 0, submit_cnt = 0;
 
 std::unordered_map<std::string, int> team_key;
 
-std::vector<TeamData> team_list_sync;
-std::vector<int> name_rank;
+std::vector<TeamData> team_list;
 
-std::set<int, CompareTeam> rank_list_sync;
+std::set<int, CompareTeam> rank_list;
 
 void skipword(const char end_sign = ' ') {
     getchar();
@@ -73,28 +74,15 @@ void ReadMsg(InputMessage &msg) {
     }
 }
 
-bool CompareTeam::operator()(const int &a, const int &b) const {
-        if (a == b)
-            return false;
-        if (team_list_sync[a].sub.ac_cnt != team_list_sync[b].sub.ac_cnt)
-            return team_list_sync[a].sub.ac_cnt > team_list_sync[b].sub.ac_cnt;
-        if (team_list_sync[a].penalty != team_list_sync[b].penalty)
-            return team_list_sync[a].penalty < team_list_sync[b].penalty;
-        if (team_list_sync[a].sub.ac_cnt) {
-            for (int i = team_list_sync[a].sub.ac_cnt - 1; i >= 0; i--)
-                if (team_list_sync[a].ac_tim_sort[i] != team_list_sync[b].ac_tim_sort[i])
-                    return team_list_sync[a].ac_tim_sort[i] < team_list_sync[b].ac_tim_sort[i];
-        }
-        return team_list_sync[a].team_name < team_list_sync[b].team_name;
-}
+bool CompareTeam::operator()(const int &a, const int &b) const { return a == b ? false : team_list[a] < team_list[b]; }
 
 void AddTeam(std::string team_name) {
     if (!started_flag) {
         if (!team_key[team_name]) {
             std::cout << kAddTeamSuc << '\n';
             team_key[team_name] = team_cnt;
-            team_list_sync.push_back(TeamData(team_name, team_cnt));
-            rank_list_sync.insert(team_cnt);
+            team_list.push_back(TeamData(team_name, team_cnt));
+            rank_list.insert(team_cnt);
             team_cnt++;
         } else {
             std::cout << kAddTeamDuplicated << '\n';
@@ -110,10 +98,8 @@ void StartCompetition(const int duration_time, int problem_count) {
         started_flag = 1;
         problem_cnt = problem_count;
         int rk_cnt = 1;
-        for (int i = 0; i < team_cnt; i++)
-            name_rank.push_back(0);
-        for (auto it : rank_list_sync)
-            name_rank[team_list_sync[it].tid] = rk_cnt++;
+        for (auto it : rank_list)
+            team_list[it].rank = rk_cnt++;
         std::cout << kStartSuc << '\n';
     } else {
         std::cout << kStartAlready << '\n';
@@ -125,18 +111,22 @@ void SubmitProblem(const std::string problem_name, const std::string team_name, 
     int problem_key = problem_name[0] - 'A';
     Submission new_sub(team_key[team_name], problem_key, submit_status, tim, submit_cnt++);
     if (!freeze_flag) {
-        rank_list_sync.erase(new_sub.tid);
-        team_list_sync[new_sub.tid].submit(new_sub);
-        rank_list_sync.insert(new_sub.tid);
+        if (submit_status == kAC) {
+            rank_list.erase(new_sub.tid);
+            team_list[new_sub.tid].submit(new_sub);
+            rank_list.insert(new_sub.tid);
+        } else {
+            team_list[new_sub.tid].submit(new_sub);
+        }
     } else {
-        team_list_sync[new_sub.tid].submitf(new_sub);
+        team_list[new_sub.tid].submitf(new_sub);
     }
 }
 
 void FlushBoard() {
     int rk_cnt = 0;
-    for (auto it : rank_list_sync) {
-        name_rank[team_list_sync[it].tid] = ++rk_cnt;
+    for (auto it : rank_list) {
+        team_list[it].rank = ++rk_cnt;
     }
     std::cout << kFlushSuc << '\n';
     return;
@@ -160,135 +150,62 @@ void ScrollBoard() {
     bool found_frz;
     int rk_cnt = 1;
     std::cout << kScrollSuc << '\n';
-    auto endd = rank_list_sync.end();
-    for (auto it = rank_list_sync.begin(); it != rank_list_sync.end(); it++) {
-        std::cout << team_list_sync[*it].team_name << " " << rk_cnt++ << " " << team_list_sync[*it].sub.ac_cnt << " "
-                  << team_list_sync[*it].penalty << " ";
-        for (int j = 0; j < problem_cnt; j++) {
-            if (team_list_sync[*it].sub.ac_tim[j]) {
-                if (team_list_sync[*it].sub.submit_cnt_bfac[j])
-                    std::cout << "+" << team_list_sync[*it].sub.submit_cnt_bfac[j];
-                else
-                    std::cout << "+";
-            } else if (!team_list_sync[*it].subf.submit_cnt[j]) {
-                if (team_list_sync[*it].sub.submit_cnt[j])
-                    std::cout << "-" << team_list_sync[*it].sub.submit_cnt[j];
-                else
-                    std::cout << ".";
-            } else {
-                if (team_list_sync[*it].sub.submit_cnt[j])
-                    std::cout << "-" << team_list_sync[*it].sub.submit_cnt[j] << "/" << team_list_sync[*it].subf.submit_cnt[j];
-                else
-                    std::cout << "0/" << team_list_sync[*it].subf.submit_cnt[j];
-            }
-            if (j != problem_cnt - 1)
-                std::cout << " ";
-        }
+    auto endd = rank_list.end();
+    for (auto it: rank_list) {
+        team_list[it].output_info(rk_cnt++);
+        team_list[it].output_data_freezed(problem_cnt);
         std::cout << '\n';
     }
-    // OutputData();
-    static std::vector<int> last_place;
-    // double x = (double)clock() / CLOCKS_PER_SEC;
-    last_place.assign(team_cnt, 0);
-    for (auto it = rank_list_sync.begin(); it != rank_list_sync.end(); it++)
-        if (team_list_sync[*it].subf.submit_tot) {
+    for (auto it: rank_list)
+        if (team_list[it].frozen()) {
             for (int i = 0; i < problem_cnt; i++) {
-                if (!team_list_sync[*it].aced_problem(i) && team_list_sync[*it].subf.submit_cnt[i]) {
-                    team_list_sync[*it].sub.submit_tot += team_list_sync[*it].subf.submit_cnt[i];
-                    team_list_sync[*it].subf.submit_tot -= team_list_sync[*it].subf.submit_cnt[i];
-                    for (int j = 0; j < 4; j++) {
-                        if (!team_list_sync[*it].subf.las_sub[i][j].tim)
-                            continue;
-                        team_list_sync[*it].sub.las_sub[i][j] = team_list_sync[*it].subf.las_sub[i][j];
-                        team_list_sync[*it].subf.las_sub[i][j] = {0, 0, 0, 0, 0};
-                    }
-                    team_list_sync[*it].sub.submit_cnt[i] += team_list_sync[*it].subf.submit_cnt[i];
-                    team_list_sync[*it].subf.submit_cnt[i] = 0;
-                    team_list_sync[*it].sub.submit_cnt_bfac[i] += team_list_sync[*it].subf.submit_cnt_bfac[i];
-                    team_list_sync[*it].subf.submit_cnt_bfac[i] = 0;
+                if (!team_list[it].aced_problem(i) && team_list[it].frozen(i)) {
+                    team_list[it].unfreeze(i);
                 }
             }
         }
+    static std::vector<int> last_place;
+    last_place.assign(team_cnt, 0);
+    auto it_las = rank_list.end();
     do {
         found_frz = 0;
-        auto it = rank_list_sync.end();
-        if (it == rank_list_sync.begin())
+        auto it = it_las;
+        if (it == rank_list.begin())
             break;
         do {
+            it_las = it;
             it--;
-            if (team_list_sync[*it].subf.ac_cnt) {
+            if (team_list[*it].frozen()) {
                 found_frz = 1;
                 auto it_nex = it;
                 it_nex++;
                 int las_nex;
-                if (it_nex == rank_list_sync.end())
+                if (it_nex == rank_list.end())
                     las_nex = -1;
                 else
                     las_nex = *it_nex;
-                rank_list_sync.erase(*it);
+                rank_list.erase(*it);
                 for (int i = last_place[*it]; i < problem_cnt; i++) {
-                    if (team_list_sync[*it].subf.ac_tim[i]) {
-                        team_list_sync[*it].sub.submit_tot += team_list_sync[*it].subf.submit_cnt[i];
-                        team_list_sync[*it].subf.submit_tot -= team_list_sync[*it].subf.submit_cnt[i];
-                        for (int j = 0; j < 4; j++) {
-                            if (!team_list_sync[*it].subf.las_sub[i][j].tim)
-                                continue;
-                            team_list_sync[*it].sub.las_sub[i][j] = team_list_sync[*it].subf.las_sub[i][j];
-                            team_list_sync[*it].subf.las_sub[i][j] = {0, 0, 0, 0, 0};
-                        }
-                        team_list_sync[*it].sub.submit_cnt[i] += team_list_sync[*it].subf.submit_cnt[i];
-                        team_list_sync[*it].subf.submit_cnt[i] = 0;
-                        team_list_sync[*it].sub.submit_cnt_bfac[i] += team_list_sync[*it].subf.submit_cnt_bfac[i];
-                        team_list_sync[*it].subf.submit_cnt_bfac[i] = 0;
-                        if (team_list_sync[*it].subf.ac_tim[i]) {
-                            auto pos = lower_bound(team_list_sync[*it].ac_tim_sort.begin(),
-                                                   team_list_sync[*it].ac_tim_sort.end(), team_list_sync[*it].subf.ac_tim[i]);
-                            team_list_sync[*it].ac_tim_sort.insert(pos, team_list_sync[*it].subf.ac_tim[i]);
-                            team_list_sync[*it].sub.ac_cnt++;
-                            team_list_sync[*it].subf.ac_cnt--;
-                            team_list_sync[*it].sub.ac_tim[i] = team_list_sync[*it].subf.ac_tim[i];
-                            team_list_sync[*it].subf.ac_tim[i] = 0;
-                            team_list_sync[*it].penalty +=
-                                20 * team_list_sync[*it].sub.submit_cnt_bfac[i] + team_list_sync[*it].sub.ac_tim[i];
-                        }
+                    if (team_list[*it].frozen(i)) {
+                        team_list[*it].unfreeze(i);
                         last_place[*it] = i + 1;
                         break;
                     }
                 }
-                rank_list_sync.insert(*it);
-                auto it_now = rank_list_sync.find(*it);
-                it_nex = it_now;
+                it_nex = rank_list.insert(*it).first;
                 it_nex++;
-                if (it_nex != rank_list_sync.end() && las_nex != *it_nex) {
-                    std::cout << team_list_sync[*it].team_name << " " << team_list_sync[*it_nex].team_name << " "
-                              << team_list_sync[*it].sub.ac_cnt << " " << team_list_sync[*it].penalty << '\n';
-                }
+                if (it_nex != rank_list.end() && las_nex != *it_nex)
+                    team_list[*it].output_data_replace(team_list[*it_nex].team_name);
                 break;
             }
-        } while (it != rank_list_sync.begin());
+        } while (it != rank_list.begin());
     } while (found_frz);
     rk_cnt = 1;
-    for (auto it = rank_list_sync.begin(); it != rank_list_sync.end(); it++) {
-        std::cout << team_list_sync[*it].team_name << " " << rk_cnt << " " << team_list_sync[*it].sub.ac_cnt << " "
-                  << team_list_sync[*it].penalty << " ";
-        name_rank[team_list_sync[*it].tid] = rk_cnt;
+    for (auto it: rank_list) {
+        team_list[it].output_info(rk_cnt);
+        team_list[it].output_data(problem_cnt);
+        team_list[it].rank = rk_cnt;
         rk_cnt++;
-        for (int j = 0; j < problem_cnt; j++) {
-            if (team_list_sync[*it].sub.ac_tim[j]) {
-                if (team_list_sync[*it].sub.submit_cnt_bfac[j])
-                    std::cout << "+" << team_list_sync[*it].sub.submit_cnt_bfac[j];
-                else
-                    std::cout << "+";
-            } else {
-                if (team_list_sync[*it].sub.submit_cnt[j])
-                    std::cout << "-" << team_list_sync[*it].sub.submit_cnt[j];
-                else
-                    std::cout << ".";
-            }
-            if (j != problem_cnt - 1)
-                std::cout << " ";
-        }
-        std::cout << '\n';
     }
     freeze_flag = 0;
 }
@@ -300,7 +217,7 @@ void QueryRanking(const std::string team_name) {
         std::cout << kQrankSuc << '\n';
         if (freeze_flag)
             std::cout << kQrankWarn << '\n';
-        std::cout << team_name << " NOW AT RANKING " << name_rank[team_key[team_name]] << '\n';
+        std::cout << team_name << " NOW AT RANKING " << team_list[team_key[team_name]].rank << '\n';
     }
     return;
 }
@@ -324,25 +241,21 @@ void QuerySubmission(const std::string team_name, const std::string problem_name
             if (submit_status == kALL) {
                 for (int i = 0; i < problem_cnt; i++)
                     for (int j = 0; j < 4; j++) {
-                        las_sub = std::max(las_sub, team_list_sync[tid].sub.las_sub[i][j]);
-                        las_sub = std::max(las_sub, team_list_sync[tid].subf.las_sub[i][j]);
+                        las_sub = std::max(las_sub, team_list[tid].last_submit(i, j));
                     }
             } else {
                 for (int i = 0; i < problem_cnt; i++) {
-                    las_sub = std::max(las_sub, team_list_sync[tid].sub.las_sub[i][submit_status]);
-                    las_sub = std::max(las_sub, team_list_sync[tid].subf.las_sub[i][submit_status]);
+                    las_sub = std::max(las_sub, team_list[tid].last_submit(i, submit_status));
                 }
             }
         } else {
             int pid = problem_name[0] - 'A';
             if (submit_status == kALL) {
                 for (int j = 0; j < 4; j++) {
-                    las_sub = std::max(las_sub, team_list_sync[tid].sub.las_sub[pid][j]);
-                    las_sub = std::max(las_sub, team_list_sync[tid].subf.las_sub[pid][j]);
+                    las_sub = std::max(las_sub, team_list[tid].last_submit(pid, j));
                 }
             } else {
-                las_sub = std::max(team_list_sync[tid].sub.las_sub[pid][submit_status],
-                                   team_list_sync[tid].subf.las_sub[pid][submit_status]);
+                las_sub = std::max(las_sub, team_list[tid].last_submit(pid, submit_status));
             }
         }
         if (las_sub.tim)

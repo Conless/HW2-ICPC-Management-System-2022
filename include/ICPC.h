@@ -1,3 +1,6 @@
+#ifndef ICPC_H
+#define ICPC_H
+
 #include <iostream>
 #include <string>
 
@@ -22,3 +25,5 @@ void ScrollBoard();
 void QueryRanking(const std::string team_name);
 void QuerySubmission(const std::string team_name, const std::string problem_name, const int submit_status);
 bool OperateMsg(const InputMessage msg);
+
+#endif

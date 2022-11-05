@@ -1,5 +1,6 @@
 #include "../include/ICPC.h"
 
+#include <algorithm>
 #include <ctime>
 #include <iostream>
 #include <set>
@@ -76,9 +77,9 @@ void ReadMsg(InputMessage &msg) {
 
 bool CompareTeam::operator()(const int &a, const int &b) const { return a == b ? false : team_list[a] < team_list[b]; }
 
-void AddTeam(std::string team_name) {
-    if (!started_flag) {
-        if (!team_key[team_name]) {
+void AddTeam(const std::string &team_name) {
+    if (!started_flag) {                // Judge if the competition started
+        if (!team_key[team_name]) {     // Judge if the team has been added
             std::cout << kAddTeamSuc << '\n';
             team_key[team_name] = team_cnt;
             team_list.push_back(TeamData(team_name, team_cnt));
@@ -107,7 +108,7 @@ void StartCompetition(const int duration_time, int problem_count) {
     return;
 }
 
-void SubmitProblem(const std::string problem_name, const std::string team_name, const int submit_status, const int tim) {
+void SubmitProblem(const std::string &problem_name, const std::string &team_name, const int submit_status, const int tim) {
     int problem_key = problem_name[0] - 'A';
     Submission new_sub(team_key[team_name], problem_key, submit_status, tim, submit_cnt++);
     if (!freeze_flag) {
@@ -150,7 +151,6 @@ void ScrollBoard() {
     bool found_frz;
     int rk_cnt = 1;
     std::cout << kScrollSuc << '\n';
-    auto endd = rank_list.end();
     for (auto it: rank_list) {
         team_list[it].output_info(rk_cnt++);
         team_list[it].output_data_freezed(problem_cnt);
@@ -210,7 +210,7 @@ void ScrollBoard() {
     freeze_flag = 0;
 }
 
-void QueryRanking(const std::string team_name) {
+void QueryRanking(const std::string &team_name) {
     if (team_key.find(team_name) == team_key.end())
         std::cout << kQrankFail << '\n';
     else {
@@ -222,7 +222,7 @@ void QueryRanking(const std::string team_name) {
     return;
 }
 
-inline int JudgeSubStatus(const std::string submit_status) {
+inline int JudgeSubStatus(const std::string &submit_status) {
     for (int i = 0; i < 5; i++) {
         if (submit_status == kSubmitStatus[i])
             return i;
@@ -230,12 +230,13 @@ inline int JudgeSubStatus(const std::string submit_status) {
     return -1;
 }
 
-void QuerySubmission(const std::string team_name, const std::string problem_name, const int submit_status) {
-    if (team_key.find(team_name) == team_key.end())
+void QuerySubmission(const std::string &team_name, const std::string &problem_name, const int submit_status) {
+    auto iter = team_key.find(team_name);
+    if (iter == team_key.end())
         std::cout << kQsubNoTeam << '\n';
     else {
         std::cout << kQsubSuc << '\n';
-        int tid = team_key[team_name];
+        int tid = iter->second;
         Submission las_sub(0, 0, 0, 0, 0);
         if (problem_name == "ALL") {
             if (submit_status == kALL) {
@@ -267,7 +268,7 @@ void QuerySubmission(const std::string team_name, const std::string problem_name
     return;
 }
 
-bool OperateMsg(const InputMessage msg) {
+bool OperateMsg(const InputMessage &msg) {
     if (msg.opt == kAdd) {
         AddTeam(msg.data[0]);
     } else if (msg.opt == kStart) {

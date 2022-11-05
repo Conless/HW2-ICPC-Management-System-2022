@@ -4,7 +4,7 @@
 
 #include "../include/resource.h"
 
-bool Submission::operator<(const Submission x) const {
+bool Submission::operator<(const Submission &x) const {
     if (tim != x.tim)
         return tim < x.tim;
     return submitid < x.submitid;
@@ -30,18 +30,8 @@ SubmitData::SubmitData(const SubmitData &x) {
             las_sub[i][j] = x.las_sub[i][j];
     }
 }
-void SubmitData::clear() {
-    ac_cnt = 0;
-    for (int i = 0; i < MAXM; i++) {
-        submit_cnt[i] = 0;
-        submit_cnt_bfac[i] = 0;
-        ac_tim[i] = 0;
-        for (int j = 0; j < 4; j++)
-            las_sub[i][j] = {0, 0, 0, 0, 0};
-    }
-}
 
-void TeamData::submit(const Submission x) {
+void TeamData::submit(const Submission &x) {
     sub.submit_cnt[x.pid]++;
     sub.las_sub[x.pid][x.status] = x;
     if (x.status == kAC && !aced_problem(x.pid)) {
@@ -54,7 +44,7 @@ void TeamData::submit(const Submission x) {
     }
     return;
 }
-void TeamData::submitf(const Submission x) {
+void TeamData::submitf(const Submission &x) {
     subf.submit_tot++;
     subf.submit_cnt[x.pid]++;
     subf.las_sub[x.pid][x.status] = x;
@@ -109,7 +99,7 @@ void TeamData::output_data_freezed(const int problem_cnt) {
             std::cout << " ";
     }
 }
-void TeamData::output_data_replace(const std::string replaced_team) {
+void TeamData::output_data_replace(const std::string &replaced_team) {
     std::cout << team_name << " " << replaced_team << " " << sub.ac_cnt << " " << penalty << '\n';
 }
 void TeamData::unfreeze(const int pid) {

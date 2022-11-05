@@ -15,7 +15,7 @@ class Submission {
     Submission(const Submission &x) : tid(x.tid), pid(x.pid), status(x.status), tim(x.tim), submitid(x.submitid) {}
     Submission(int tid, int pid, int status, int tim, int submitid)
         : tid(tid), pid(pid), status(status), tim(tim), submitid(submitid) {}
-    bool operator<(const Submission x) const;
+    bool operator<(const Submission &x) const;
 };
 
 class SubmitData {
@@ -28,7 +28,6 @@ class SubmitData {
   public:
     SubmitData();
     SubmitData(const SubmitData &x);
-    void clear();
 };
 
 class TeamData {
@@ -54,12 +53,12 @@ class TeamData {
 
     Submission last_submit(int pid, int st) { return std::max(sub.las_sub[pid][st], subf.las_sub[pid][st]); }
     
-    void submit(const Submission x);
-    void submitf(const Submission x);
+    void submit(const Submission &x);
+    void submitf(const Submission &x);
     void output_info(const int now_rank);
     void output_data(const int problem_cnt);
     void output_data_freezed(const int problem_cnt);
-    void output_data_replace(const std::string replaced_team);
+    void output_data_replace(const std::string &replaced_team);
     void unfreeze(const int pid);
 };
 

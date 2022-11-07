@@ -1,2 +1,0 @@
-/usr/bin/ar qc ../../out/lib/libICPC-Management-System_lib.a CMakeFiles/ICPC-Management-System_lib.dir/ICPC.cc.o CMakeFiles/ICPC-Management-System_lib.dir/data.cc.o CMakeFiles/ICPC-Management-System_lib.dir/main.cpp.o
-/usr/bin/ranlib ../../out/lib/libICPC-Management-System_lib.a

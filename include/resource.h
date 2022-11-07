@@ -1,3 +1,6 @@
+#ifndef ICPC_RESOURCE_H
+#define ICPC_RESOURCE_H
+
 #include <string>
 
 // Options Sign
@@ -51,3 +54,5 @@ const int kRE = 2;
 const int kTLE = 3;
 const int kALL = 4;
 const std::string kSubmitStatus[] = {"Accepted", "Wrong_Answer", "Runtime_Error", "Time_Limit_Exceed", "ALL"};
+
+#endif

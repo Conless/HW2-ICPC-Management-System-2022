@@ -1,24 +1,11 @@
-#!/bin/bash
-rm -rf build/
-rm -rf out/bin/
-rm -rf out/lib/
-rm -rf out/tst/
- 
-test -e build/ || mkdir build
-echo "mkdir build/"
- 
-test -e out/ || mkdir out
-echo "mkdir out/"
- 
-test -e out/bin/ || mkdir out/bin
-echo "mkdir out/bin/"
- 
-test -e out/lib/ || mkdir out/lib
-echo "mkdir out/lib/"
- 
-test -e out/tst/ || mkdir out/tst
-echo "mkdir out/tst/"
- 
-cd build/
-cmake .. -DCMAKE_BUILD_TYPE=Debug
+cd build
+cmake ..
 make
+echo
+echo "Start running the program..."
+time ./ICPC < ../data/bigger.in > test.out
+DIFF=$(diff ../data/bigger.out test.out) 
+if [ "$DIFF" == "" ]
+then
+    echo "The output is correct."
+fi

@@ -1,0 +1,22 @@
+[
+{
+  "directory": "/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build",
+  "command": "/usr/bin/g++  -I/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/include -I/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src    -Ofast -g -o CMakeFiles/icpc-runtime.dir/src/main.cpp.o -c /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/main.cpp",
+  "file": "/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/main.cpp"
+},
+{
+  "directory": "/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build",
+  "command": "/usr/bin/g++  -I/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/include -I/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src    -Ofast -g -o CMakeFiles/ICPC.dir/src/main.cpp.o -c /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/main.cpp",
+  "file": "/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/main.cpp"
+},
+{
+  "directory": "/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build",
+  "command": "/usr/bin/g++  -I/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/include -I/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src    -Ofast -g -o CMakeFiles/ICPC.dir/src/ICPC.cc.o -c /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/ICPC.cc",
+  "file": "/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/ICPC.cc"
+},
+{
+  "directory": "/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/build",
+  "command": "/usr/bin/g++  -I/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/include -I/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src    -Ofast -g -o CMakeFiles/ICPC.dir/src/data.cc.o -c /mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/data.cc",
+  "file": "/mnt/d/OneDrive/cs/course/22fall/sjtu/cs1953/project/HW2-ICPC-Management-System-2022/src/data.cc"
+}
+]

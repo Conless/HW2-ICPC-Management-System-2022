@@ -117,30 +117,105 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named ICPC-Management-System_run
+# Target rules for targets named icpc-runtime
 
 # Build rule for target.
-ICPC-Management-System_run: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ICPC-Management-System_run
-.PHONY : ICPC-Management-System_run
+icpc-runtime: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 icpc-runtime
+.PHONY : icpc-runtime
 
 # fast build rule for target.
-ICPC-Management-System_run/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_run.dir/build.make src/CMakeFiles/ICPC-Management-System_run.dir/build
-.PHONY : ICPC-Management-System_run/fast
+icpc-runtime/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/icpc-runtime.dir/build.make CMakeFiles/icpc-runtime.dir/build
+.PHONY : icpc-runtime/fast
 
 #=============================================================================
-# Target rules for targets named ICPC-Management-System_lib
+# Target rules for targets named ICPC
 
 # Build rule for target.
-ICPC-Management-System_lib: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ICPC-Management-System_lib
-.PHONY : ICPC-Management-System_lib
+ICPC: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ICPC
+.PHONY : ICPC
 
 # fast build rule for target.
-ICPC-Management-System_lib/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/ICPC-Management-System_lib.dir/build.make src/CMakeFiles/ICPC-Management-System_lib.dir/build
-.PHONY : ICPC-Management-System_lib/fast
+ICPC/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ICPC.dir/build.make CMakeFiles/ICPC.dir/build
+.PHONY : ICPC/fast
+
+src/ICPC.o: src/ICPC.cc.o
+.PHONY : src/ICPC.o
+
+# target to build an object file
+src/ICPC.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ICPC.dir/build.make CMakeFiles/ICPC.dir/src/ICPC.cc.o
+.PHONY : src/ICPC.cc.o
+
+src/ICPC.i: src/ICPC.cc.i
+.PHONY : src/ICPC.i
+
+# target to preprocess a source file
+src/ICPC.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ICPC.dir/build.make CMakeFiles/ICPC.dir/src/ICPC.cc.i
+.PHONY : src/ICPC.cc.i
+
+src/ICPC.s: src/ICPC.cc.s
+.PHONY : src/ICPC.s
+
+# target to generate assembly for a file
+src/ICPC.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ICPC.dir/build.make CMakeFiles/ICPC.dir/src/ICPC.cc.s
+.PHONY : src/ICPC.cc.s
+
+src/data.o: src/data.cc.o
+.PHONY : src/data.o
+
+# target to build an object file
+src/data.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ICPC.dir/build.make CMakeFiles/ICPC.dir/src/data.cc.o
+.PHONY : src/data.cc.o
+
+src/data.i: src/data.cc.i
+.PHONY : src/data.i
+
+# target to preprocess a source file
+src/data.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ICPC.dir/build.make CMakeFiles/ICPC.dir/src/data.cc.i
+.PHONY : src/data.cc.i
+
+src/data.s: src/data.cc.s
+.PHONY : src/data.s
+
+# target to generate assembly for a file
+src/data.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ICPC.dir/build.make CMakeFiles/ICPC.dir/src/data.cc.s
+.PHONY : src/data.cc.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/icpc-runtime.dir/build.make CMakeFiles/icpc-runtime.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ICPC.dir/build.make CMakeFiles/ICPC.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/icpc-runtime.dir/build.make CMakeFiles/icpc-runtime.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ICPC.dir/build.make CMakeFiles/ICPC.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/icpc-runtime.dir/build.make CMakeFiles/icpc-runtime.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ICPC.dir/build.make CMakeFiles/ICPC.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -150,8 +225,17 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... ICPC-Management-System_lib"
-	@echo "... ICPC-Management-System_run"
+	@echo "... ICPC"
+	@echo "... icpc-runtime"
+	@echo "... src/ICPC.o"
+	@echo "... src/ICPC.i"
+	@echo "... src/ICPC.s"
+	@echo "... src/data.o"
+	@echo "... src/data.i"
+	@echo "... src/data.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

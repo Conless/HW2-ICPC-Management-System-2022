@@ -1,0 +1,1 @@
+/usr/bin/g++    -Ofast -g CMakeFiles/ICPC.dir/src/main.cpp.o CMakeFiles/ICPC.dir/src/ICPC.cc.o CMakeFiles/ICPC.dir/src/data.cc.o -o ICPC  libicpc-runtime.a 

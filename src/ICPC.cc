@@ -1,4 +1,11 @@
-#include "../include/ICPC.h"
+// The implementation of include/ICPC.h
+// This source contains the main operation functions of the ICPC Management System
+
+// Author: Conless
+// Date: 2022-11-02
+// File name: /src/ICPC.cc
+
+#include "ICPC.h"
 
 #include <algorithm>
 #include <ctime>
@@ -6,25 +13,30 @@
 #include <set>
 #include <unordered_map>
 
-#include "../include/data.h"
-#include "../include/resource.h"
+#include "data.h"
+#include "resource.h"
 
-
+// The judge flags of the system
 int started_flag = 0, freeze_flag = 0;
 int team_cnt = 0, problem_cnt = 0, submit_cnt = 0;
 
+// The hash map which returns the id of a team
 std::unordered_map<std::string, int> team_key;
 
+// The data of all teams
 std::vector<TeamData> team_list;
 
+// The rank list of all teams
 std::set<int, CompareTeam> rank_list;
 
+// Function used when inputting, to skip a word of skip to a unique char
 void skipword(const char end_sign = ' ') {
     getchar();
     while (getchar() != end_sign)
         ;
 }
 
+// Read a string separated by space
 void rdstr(std::string &s, const int max_len = 30) {
     char str[max_len];
     scanf("%s", str);
@@ -32,6 +44,7 @@ void rdstr(std::string &s, const int max_len = 30) {
     return;
 }
 
+// Read and judge the input messages
 void ReadMsg(InputMessage &msg) {
     std::string option;
     rdstr(option);
@@ -75,11 +88,14 @@ void ReadMsg(InputMessage &msg) {
     }
 }
 
+// The implementation of the compare function of two teams, here used a simple trick in order to reduce the time of comparing
+// two same teams
 bool CompareTeam::operator()(const int &a, const int &b) const { return a == b ? false : team_list[a] < team_list[b]; }
 
+// Add a team
 void AddTeam(const std::string &team_name) {
-    if (!started_flag) {                // Judge if the competition started
-        if (!team_key[team_name]) {     // Judge if the team has been added
+    if (!started_flag) {            // Judge if the competition started
+        if (!team_key[team_name]) { // Judge if the team has been added
             std::cout << kAddTeamSuc << '\n';
             team_key[team_name] = team_cnt;
             team_list.push_back(TeamData(team_name, team_cnt));
@@ -94,6 +110,7 @@ void AddTeam(const std::string &team_name) {
     return;
 }
 
+// Start the competition and initialize the rank list
 void StartCompetition(const int duration_time, int problem_count) {
     if (!started_flag) {
         started_flag = 1;
@@ -108,14 +125,15 @@ void StartCompetition(const int duration_time, int problem_count) {
     return;
 }
 
+// Submit a problem
 void SubmitProblem(const std::string &problem_name, const std::string &team_name, const int submit_status, const int tim) {
     int problem_key = problem_name[0] - 'A';
     Submission new_sub(team_key[team_name], problem_key, submit_status, tim, submit_cnt++);
-    if (!freeze_flag) {
+    if (!freeze_flag) { // If the scoreboard is not frozen
         if (submit_status == kAC) {
-            rank_list.erase(new_sub.tid);
-            team_list[new_sub.tid].submit(new_sub);
-            rank_list.insert(new_sub.tid);
+            rank_list.erase(new_sub.tid);           // First erase the team before the submission
+            team_list[new_sub.tid].submit(new_sub); // Edit the submit data of the team
+            rank_list.insert(new_sub.tid);          // Insert it back
         } else {
             team_list[new_sub.tid].submit(new_sub);
         }
@@ -126,8 +144,9 @@ void SubmitProblem(const std::string &problem_name, const std::string &team_name
 
 void FlushBoard() {
     int rk_cnt = 0;
-    for (auto it : rank_list) {
-        team_list[it].rank = ++rk_cnt;
+    for (auto it : rank_list) { // Read the rank list from the top to last
+        team_list[it].rank =
+            ++rk_cnt; // Pre-save the rank data of each team, which can reduce the time cost when querying the ranking to O(1)
     }
     std::cout << kFlushSuc << '\n';
     return;
@@ -151,12 +170,12 @@ void ScrollBoard() {
     bool found_frz;
     int rk_cnt = 1;
     std::cout << kScrollSuc << '\n';
-    for (auto it: rank_list) {
+    for (auto it : rank_list) { // Output the original scoreboard
         team_list[it].output_info(rk_cnt++);
         team_list[it].output_data_freezed(problem_cnt);
         std::cout << '\n';
     }
-    for (auto it: rank_list)
+    for (auto it : rank_list) // Pre-edit the teams which have no ac records after, which would not make a change to the ranking
         if (team_list[it].frozen()) {
             for (int i = 0; i < problem_cnt; i++) {
                 if (!team_list[it].aced_problem(i) && team_list[it].frozen(i)) {
@@ -167,15 +186,15 @@ void ScrollBoard() {
     static std::vector<int> last_place;
     last_place.assign(team_cnt, 0);
     auto it_las = rank_list.end();
-    do {
+    do { // Edit the teams with ac records
         found_frz = 0;
-        auto it = it_las;
+        auto it = it_las; // Record where we reached at the last search
         if (it == rank_list.begin())
             break;
         do {
             it_las = it;
             it--;
-            if (team_list[*it].frozen()) {
+            if (team_list[*it].frozen()) { // If this team have frozen ac records
                 found_frz = 1;
                 auto it_nex = it;
                 it_nex++;
@@ -186,13 +205,13 @@ void ScrollBoard() {
                     las_nex = *it_nex;
                 rank_list.erase(*it);
                 for (int i = last_place[*it]; i < problem_cnt; i++) {
-                    if (team_list[*it].frozen(i)) {
+                    if (team_list[*it].frozen(i)) { // If the problem is frozen
                         team_list[*it].unfreeze(i);
                         last_place[*it] = i + 1;
                         break;
                     }
                 }
-                it_nex = rank_list.insert(*it).first;
+                it_nex = rank_list.insert(*it).first; // The team that it replaces
                 it_nex++;
                 if (it_nex != rank_list.end() && las_nex != *it_nex)
                     team_list[*it].output_data_replace(team_list[*it_nex].team_name);
@@ -201,7 +220,7 @@ void ScrollBoard() {
         } while (it != rank_list.begin());
     } while (found_frz);
     rk_cnt = 1;
-    for (auto it: rank_list) {
+    for (auto it : rank_list) { // Output the new scoreboard
         team_list[it].output_info(rk_cnt);
         team_list[it].output_data(problem_cnt);
         team_list[it].rank = rk_cnt;
@@ -238,7 +257,7 @@ void QuerySubmission(const std::string &team_name, const std::string &problem_na
         std::cout << kQsubSuc << '\n';
         int tid = iter->second;
         Submission las_sub(0, 0, 0, 0, 0);
-        if (problem_name == "ALL") {
+        if (problem_name == "ALL") { // If we want to find the last submission of all problems
             if (submit_status == kALL) {
                 for (int i = 0; i < problem_cnt; i++)
                     for (int j = 0; j < 4; j++) {
@@ -259,7 +278,7 @@ void QuerySubmission(const std::string &team_name, const std::string &problem_na
                 las_sub = std::max(las_sub, team_list[tid].last_submit(pid, submit_status));
             }
         }
-        if (las_sub.tim)
+        if (las_sub.tim) // If the submission is found
             std::cout << team_name << " " << static_cast<char>(las_sub.pid + 'A') << " " << kSubmitStatus[las_sub.status] << " "
                       << las_sub.tim << '\n';
         else

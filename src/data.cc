@@ -127,7 +127,7 @@ void TeamData::unfreeze(const int pid) { // Unfreeze a problem of a team
     if (subf.ac_tim[pid]) { // If that problem is aced by this team
         auto pos = lower_bound(ac_tim_sort.begin(), ac_tim_sort.end(), subf.ac_tim[pid]);
         ac_tim_sort.insert(pos, subf.ac_tim[pid]); // Find a correct place to insert the ac data
-        sub.ac_cnt++;
+        sub.ac_cnt++;       
         subf.ac_cnt--;
         sub.ac_tim[pid] = subf.ac_tim[pid];
         subf.ac_tim[pid] = 0;

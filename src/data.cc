@@ -6,11 +6,11 @@
 // Date: 2022-11-01
 // File name: /src/data.cc
 
-#include "data.h"
+#include <ICPC/data.h>
 
 #include <iostream>
 
-#include "resource.h"
+#include <ICPC/resource.h>
 
 bool Submission::operator<(const Submission &x) const { // Compare two different submissions
     if (tim != x.tim)                                   // If the submit time is different

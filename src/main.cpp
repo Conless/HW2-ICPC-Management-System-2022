@@ -1,5 +1,5 @@
 // The main header file
-#include "ICPC.h"
+#include <ICPC/ICPC.h>
 
 int main() {
     std::ios::sync_with_stdio(false);           // stop the sync with stdio

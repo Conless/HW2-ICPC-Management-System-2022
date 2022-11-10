@@ -5,7 +5,7 @@
 // Date: 2022-11-02
 // File name: /src/ICPC.cc
 
-#include "ICPC.h"
+#include <ICPC/ICPC.h>
 
 #include <algorithm>
 #include <ctime>
@@ -13,8 +13,8 @@
 #include <set>
 #include <unordered_map>
 
-#include "data.h"
-#include "resource.h"
+#include <ICPC/data.h>
+#include <ICPC/resource.h>
 
 // The judge flags of the system
 int started_flag = 0, freeze_flag = 0;

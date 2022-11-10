@@ -57,7 +57,7 @@ class TeamData {
   public:
     // The constructors of the TeamData
     TeamData() { penalty = 0; }
-    TeamData(std::string team_name, int tid) : team_name(team_name), tid(tid), penalty(0) {}
+    TeamData(std::string team_name, int tid) : team_name(team_name), penalty(0), tid(tid) { }
 
     // Some judge functions
     inline bool aced_problem(int pid) { return sub.ac_tim[pid] || subf.ac_tim[pid]; }

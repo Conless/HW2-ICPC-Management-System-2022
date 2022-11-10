@@ -1,2 +1,0 @@
-/usr/bin/ar qc libicpc-runtime.a CMakeFiles/icpc-runtime.dir/src/main.cpp.o
-/usr/bin/ranlib libicpc-runtime.a

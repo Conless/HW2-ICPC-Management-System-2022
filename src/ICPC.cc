@@ -5,7 +5,7 @@
 // Date: 2022-11-02
 // File name: /src/ICPC.cc
 
-#include <ICPC/ICPC.h>
+#include "ICPC/ICPC.h"
 
 #include <algorithm>
 #include <ctime>
@@ -13,8 +13,8 @@
 #include <set>
 #include <unordered_map>
 
-#include <ICPC/data.h>
-#include <ICPC/resource.h>
+#include "ICPC/data.h"
+#include "ICPC/resource.h"
 
 // The judge flags of the system
 int started_flag = 0, freeze_flag = 0;
@@ -30,6 +30,7 @@ std::vector<TeamData> team_list;
 std::set<int, CompareTeam> rank_list;
 
 // Function used when inputting, to skip a word of skip to a unique char
+namespace {
 void skipword(const char end_sign = ' ') {
     getchar();
     while (getchar() != end_sign)
@@ -42,6 +43,7 @@ void rdstr(std::string &s, const int max_len = 30) {
     scanf("%s", str);
     s = static_cast<std::string>(str);
     return;
+}
 }
 
 // Read and judge the input messages
